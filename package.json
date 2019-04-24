@@ -10,23 +10,49 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onLanguage:yatt"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
+		"languages": [{
+            "id": "yatt",
+            "aliases": ["yatt", "yatt"],
+            "extensions": [".yatt",".ytmpl"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "yatt",
+            "scopeName": "source.html",
+            "path": "./syntaxes/yatt.tmLanguage.json"
+		}],
+		"configuration": {
+			"type": "object",
+			"title": "yatt langserver configuration",
+			"properties": {
+				"yattLanguageServer.trace.server": {
+					"scope": "window",
+					"type": "string",
+					"enum": [
+						"off",
+						"messages",
+						"verbose"
+					],
+					"default": "verbose",
+					"description": "Traces the communication between VS Code and the language server."
+				}
 			}
-		]
+		}		
 	},
+
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
 		"postinstall": "node ./node_modules/vscode/bin/install",
 		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"dependencies": {
+		"vscode-languageclient": "^4.1.4"
 	},
 	"devDependencies": {
 		"typescript": "^3.3.1",
