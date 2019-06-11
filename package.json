@@ -22,7 +22,7 @@
         }],
         "grammars": [{
             "language": "yatt",
-            "scopeName": "source.html",
+            "scopeName": "text.html.yatt",
             "path": "./syntaxes/yatt.tmLanguage.json"
 		}],
 		"configuration": {

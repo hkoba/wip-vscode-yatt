@@ -3,30 +3,10 @@
 	"name": "yatt",
 	"patterns": [
 		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
+			"include": "text.html.basic"
 		}
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.yatt",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.yatt",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.yatt",
-					"match": "\\\\."
-				}
-			]
-		}
 	},
-	"scopeName": "source.html"
+	"scopeName": "text.html.yatt"
 }
