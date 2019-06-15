@@ -4,12 +4,10 @@
 	"patterns": [
             {
                 "name": "meta.multipart.yatt",
-                "begin": "^(<!)(yatt)(:)(\\w+)",
+                "begin": "^(<!yatt:)(\\w+)",
                 "beginCaptures": {
-                    "1": { "name": "punctuation.definition.tag.yatt" }
-                    , "2": { "name": "entity.name.tag.namespace.yatt" }
-                    , "3": { "name": "punctuation.separator.namespace.yatt" }
-                    , "4": { "name": "keyword.other.$2.yatt" }
+                    "1": { "name": "keyword.control.other.yatt" }
+                    , "2": { "name": "keyword.other.$2.yatt" }
                 }
                 , "patterns": [
                     { "include": "#attlist" }
@@ -127,14 +125,15 @@
                 "patterns": [
                     {
                         "begin": "--+", "end": "--+", "name": "comment.block.yatt"
-                    },
-                    {
+                    }
+                    , {
                         "match":"(\\w+)(?::(\\w+))?\\s*=", "captures": {
                             "1": { "name": "entity.other.attribute-name.yatt" }
                         }
-                    },
-                    { "include": "#doublequotedString" },
-                    { "include": "#singlequotedString" }
+                    }
+                    , { "include": "#doublequotedString" }
+                    , { "include": "#singlequotedString" }
+                    , { "match": "\\w+", "name": "entity.other.attribute-name.yatt" }
                 ]
             },
 		"doublequotedString": {
