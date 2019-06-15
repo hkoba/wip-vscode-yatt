@@ -4,21 +4,22 @@
 	"patterns": [
             {
                 "name": "meta.multipart.yatt",
-                "begin": "^(?=<!yatt:",
+                "begin": "^<!yatt:",
+                "beginCaptures": {
+                    "0": { "name": "punctuation.definition.tag.xml" }
+                },
                 "end": "^(?=<!yatt:",
                 "patterns": [
                     {
                         "name": "meta.embedded.block.yatt",
-                        "begin": "^(?=<!yatt:(args|widget|page)",
+                        "begin": "\\G(?=args|widget|page)",
                         "end": "^(?=<!yatt:",
                         "pattern": [
                             {
                                 "name": "meta.declaration.yatt",
-                                "begin": "^(<!)(yatt:)(\\w+)((?::\\w+)*)",
+                                "begin": "\\G(widget|page)\\s+",
                                 "beginCaptures": {
-                                    "1": { "name": "punctuation.definition.tag.xml" },
-                                    "2": { "name": "keyword.other.doctype.xml" },
-                                    "3": { "name": "keyword.other.$1.yatt" }
+                                    "0": { "name": "keyword.other.$1.yatt" }
                                 },
                                 "patterns": [
                                     { "include": "#attlist" }
@@ -30,28 +31,6 @@
 	                    }
                         ]
                     }
-                    /*, {
-                        "name": "meta.embedded.block.perl",
-                        "begin": "^(?=<!yatt:(action|entity)",
-                        "end": "^(?=<!yatt:",
-                        "patterns": [
-                            {
-                                "begin": "\\A(<!yatt:)(action|entity)\\s+(\\w+)",
-                                "beginCaptures": {
-                                    "1": { "name": "punctuation.definition.tag.xml" },
-                                    "2": { "name": "storage.type.$2.yatt" },
-                                    "3": { "name": "entity.name.$2.yatt" }
-                                },
-                                "patterns": [
-                                    { "include": "#attlist" }
-                                ],
-                                "end": ">\n"
-                            },
-                            {
-                                "include": "source.perl"
-                            }
-                        ]
-                    } */
                 ]
             }
 	],
