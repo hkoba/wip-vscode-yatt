@@ -65,10 +65,65 @@
                 }
             }
             , {
-		"include": "text.yatt.basic"
+                "begin": "(&)(yatt)(?=:)"
+                , "beginCaptures": {
+                    "1": { "name": "punctuation.definition.entity.yatt" }
+                    , "2": { "name": "entity.name.tag.namespace.yatt" }
+                }
+                , "end": ";"
+                , "endCaptures": {
+                    "0": { "name": "punctuation.definition.entity.yatt" }
+                }
+                , "patterns": [
+                    { "include": "#entpath" }
+                ]
+            }
+            , {
+		"include": "text.html.basic"
 	    }            
 	],
 	"repository": {
+            "entpath": {
+                "patterns": [
+                    { "include": "#entcall" }
+                    , { "include": "#entitem" }
+                ]
+            },
+            "entcall": {
+                "patterns": [
+                    {
+                        "begin": "\\G:\\w+\\(", "end": "\\)", "patterns": [
+                            { "include": "#entitem" }
+                        ]
+                        , "name": "entity.name.function.yatt"
+                    },
+                    {
+                        "match": "\\G:\\w+"
+                        , "name": "variable.language.entity.yatt"
+                    }
+                ]
+            },
+            "entitem": {
+                "patterns": [
+                    {
+                        "name": "meta.array.literal.yatt"
+                        , "begin": "\\G\\[", "end": "\\]", "patterns": [
+                            { "include": "#entitem" }
+                        ]
+                        , "beginCaptures": { "0": "keyword.symbol.yatt" }
+                        , "endCaptures": { "0": "keyword.symbol.yatt" }
+                    },
+                    {
+                        "name": "meta.object.literal.yatt"
+                        , "begin": "\\G\\{", "end": "\\}", "patterns": [
+                            { "include": "#entitem" }
+                        ]
+                        , "beginCaptures": { "0": "keyword.symbol.yatt" }
+                        , "endCaptures": { "0": "keyword.symbol.yatt" }
+                    },
+                    { "include": "#entcall" }
+                ]
+            },
             "attlist": {
                 "patterns": [
                     {
