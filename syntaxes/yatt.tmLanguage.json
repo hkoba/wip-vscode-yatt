@@ -65,14 +65,13 @@
                 }
             }
             , {
-                "begin": "(&)(yatt)(?=:)"
+                "begin": "(&yatt)(?=:)"
                 , "beginCaptures": {
-                    "1": { "name": "punctuation.definition.entity.yatt" }
-                    , "2": { "name": "entity.name.tag.namespace.yatt" }
+                    "0": { "name": "entity.other.attribute-name.yatt" }
                 }
                 , "end": ";"
                 , "endCaptures": {
-                    "0": { "name": "punctuation.definition.entity.yatt" }
+                    "0": { "name": "entity.other.attribute-name.yatt" }
                 }
                 , "patterns": [
                     { "include": "#entpath" }
@@ -99,7 +98,7 @@
                     },
                     {
                         "match": "\\G:\\w+"
-                        , "name": "variable.language.entity.yatt"
+                        , "name": "variable.other.object.yatt"
                     }
                 ]
             },
