@@ -4,35 +4,19 @@
 	"patterns": [
             {
                 "name": "meta.multipart.yatt",
-                "begin": "^<!yatt:",
+                "begin": "^(<!yatt:)(\\w+)",
                 "beginCaptures": {
-                    "0": { "name": "punctuation.definition.tag.xml" }
+                    "1": { "name": "punctuation.definition.tag.xml" }
+                    , "2": { "name": "keyword.other.$2.yatt" }
                 },
-                "end": "^(?=<!yatt:",
                 "patterns": [
-                    {
-                        "name": "meta.embedded.block.yatt",
-                        "begin": "\\G(?=args|widget|page)",
-                        "end": "^(?=<!yatt:",
-                        "pattern": [
-                            {
-                                "name": "meta.declaration.yatt",
-                                "begin": "\\G(widget|page)\\s+",
-                                "beginCaptures": {
-                                    "0": { "name": "keyword.other.$1.yatt" }
-                                },
-                                "patterns": [
-                                    { "include": "#attlist" }
-                                ],
-                                "end": ">\n"
-                            },
-	                    {
-		                "include": "text.html.basic"
-	                    }
-                        ]
-                    }
-                ]
+                    { "include": "#attlist" }
+                ],
+                "end": ">\n"
             }
+            , {
+		"include": "text.html.basic"
+	    }            
 	],
 	"repository": {
             "attlist": {
