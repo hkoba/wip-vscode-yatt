@@ -4,29 +4,63 @@
 	"patterns": [
             {
                 "name": "meta.multipart.yatt",
-                "begin": "^(<!yatt:)(\\w+)",
+                "begin": "^(<!)(yatt)(:)(\\w+)",
                 "beginCaptures": {
-                    "1": { "name": "punctuation.definition.tag.xml" }
-                    , "2": { "name": "keyword.other.$2.yatt" }
-                },
-                "patterns": [
+                    "1": { "name": "punctuation.definition.tag.yatt" }
+                    , "2": { "name": "entity.name.tag.namespace.yatt" }
+                    , "3": { "name": "punctuation.separator.namespace.yatt" }
+                    , "4": { "name": "keyword.other.$2.yatt" }
+                }
+                , "patterns": [
                     { "include": "#attlist" }
-                ],
-                "end": ">\n"
+                ]
+                , "end": ">\n"
+                , "endCaptures": {
+                    "0": { "name": "punctuation.definition.tag.end.yatt" }
+                }
             }
             , {
-		"include": "text.html.basic"
+                "begin": "(<)(yatt)(:)(\\w+)(?=\\s|/?>)",
+                "beginCaptures": {
+		    "1": { "name": "punctuation.definition.tag.begin.yatt" }
+                    , "2": { "name": "entity.name.tag.namespace.yatt" }
+                    , "3": { "name": "punctuation.separator.namespace.yatt" }
+		    , "4": { "name": "entity.name.tag.yatt" }
+                }
+                , "end": "/?>"
+                , "endCaptures": {
+                    "0": { "name": "punctuation.definition.tag.end.yatt" }
+                }
+                , "patterns": [
+                    { "include": "#attlist" }
+                ]
+            }
+            , {
+                "begin": "(</)(yatt)(:)(\\w+)\\s*"
+                , "beginCaptures": {
+		    "1": { "name": "punctuation.definition.tag.begin.yatt" }
+                    , "2": { "name": "entity.name.tag.namespace.yatt" }
+                    , "3": { "name": "punctuation.separator.namespace.yatt" }
+		    , "4": { "name": "entity.name.tag.yatt" }
+                }
+                , "end": ">"
+                , "endCaptures": {
+                    "0": { "name": "punctuation.definition.tag.end.yatt" }
+                }
+            }
+            , {
+		"include": "text.yatt.basic"
 	    }            
 	],
 	"repository": {
             "attlist": {
                 "patterns": [
                     {
-                        "begin": "--+", "end": "--+", "name": "comment.block.xml"
+                        "begin": "--+", "end": "--+", "name": "comment.block.yatt"
                     },
                     {
                         "match":"(\\w+)(?::(\\w+))?\\s*=", "captures": {
-                            "1": { "name": "entity.other.attribute-name.xml" }
+                            "1": { "name": "entity.other.attribute-name.yatt" }
                         }
                     },
                     { "include": "#doublequotedString" },
@@ -37,16 +71,16 @@
 			"begin": "\"",
 			"beginCaptures": {
 				"0": {
-					"name": "punctuation.definition.string.begin.xml"
+					"name": "punctuation.definition.string.begin.yatt"
 				}
 			},
 			"end": "\"",
 			"endCaptures": {
 				"0": {
-					"name": "punctuation.definition.string.end.xml"
+					"name": "punctuation.definition.string.end.yatt"
 				}
 			},
-			"name": "string.quoted.double.xml",
+			"name": "string.quoted.double.yatt",
 			"patterns": [
 				{
 					"include": "#entity"
@@ -57,16 +91,16 @@
 			"begin": "'",
 			"beginCaptures": {
 				"0": {
-					"name": "punctuation.definition.string.begin.xml"
+					"name": "punctuation.definition.string.begin.yatt"
 				}
 			},
 			"end": "'",
 			"endCaptures": {
 				"0": {
-					"name": "punctuation.definition.string.end.xml"
+					"name": "punctuation.definition.string.end.yatt"
 				}
 			},
-			"name": "string.quoted.single.xml",
+			"name": "string.quoted.single.yatt",
 			"patterns": [
 				{
 					"include": "#entity"
@@ -76,14 +110,14 @@
 		"entity": {
 			"captures": {
 				"1": {
-					"name": "punctuation.definition.constant.xml"
+					"name": "punctuation.definition.constant.yatt"
 				},
 				"3": {
-					"name": "punctuation.definition.constant.xml"
+					"name": "punctuation.definition.constant.yatt"
 				}
 			},
 			"match": "(&)([:a-zA-Z_][:a-zA-Z0-9_.-]*|#[0-9]+|#x[0-9a-fA-F]+)(;)",
-			"name": "constant.character.entity.xml"
+			"name": "constant.character.entity.yatt"
 		}
 	},
 	"scopeName": "text.html.yatt"
