@@ -36,7 +36,23 @@
                 ]
             }
             , {
-                "begin": "(</)(yatt)(:)(\\w+)\\s*"
+                "begin": "(<:)(yatt)(:)(\\w+)(?=\\s|/?>)",
+                "beginCaptures": {
+		    "1": { "name": "punctuation.separator.namespace.yatt" }
+                    , "2": { "name": "entity.name.tag.namespace.yatt" }
+                    , "3": { "name": "punctuation.separator.namespace.yatt" }
+		    , "4": { "name": "entity.other.attribute-name.begin.yatt" }
+                }
+                , "end": "/?>"
+                , "endCaptures": {
+                    "0": { "name": "punctuation.definition.tag.end.yatt" }
+                }
+                , "patterns": [
+                    { "include": "#attlist" }
+                ]
+            }
+            , {
+                "begin": "(</:?)(yatt)(:)(\\w+)\\s*"
                 , "beginCaptures": {
 		    "1": { "name": "punctuation.definition.tag.begin.yatt" }
                     , "2": { "name": "entity.name.tag.namespace.yatt" }
