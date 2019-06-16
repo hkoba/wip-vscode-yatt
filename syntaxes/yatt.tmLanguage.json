@@ -14,15 +14,10 @@
                 , "patterns": [
                     {
                         "name": "meta.declaration.$1.yatt"
-                        , "begin": "(^|\\G)<!yatt:(\\w+)"
-                        , "end": ">\n"
+                        , "begin": "^<!yatt:(\\w+)"
+                        , "end": ">"
                     }
                 ]
-            }
-            , {
-                "name": "meta.multipart.yatt meta.function.yatt"
-                , "begin": "\\A"
-                , "while": "^(?<!<!yatt:)"
             }
 	],
 	"repository": {
