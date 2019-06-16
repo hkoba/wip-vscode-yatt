@@ -21,7 +21,7 @@
                 "patterns": [
                     {
                         "name": "meta.widget.yatt"
-                        , "begin": "^(?=<!yatt:(widget|page|args))"
+                        , "begin": "^(?=<!yatt:widget|<!yatt:page|<!yatt:args)"
                         , "while": "^(?<!<!yatt:)"
                         , "patterns": [
                             {
@@ -33,7 +33,7 @@
                     }
                     , {
                         "name": "meta.action.yatt.perl"
-                        , "begin": "^(?=<!yatt:(action|entity))"
+                        , "begin": "^(?=<!yatt:action|<!yatt:entity)"
                         , "while": "^(?<!<!yatt:)"
                         , "patterns": [
                             {
