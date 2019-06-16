@@ -7,6 +7,7 @@
                 , "begin": "<!--#yatt\\b"
                 , "end": "-->"
             }
+            , { "include": "#part" }
             , {
                 "name": "meta.multipart.yatt"
                 , "begin": "\\A"
@@ -18,21 +19,21 @@
                     }
                 ]
             }
-            , { "include": "#part" }
 	],
 	"repository": {
-            "part": {
+            "declaration": {
+                "name": "meta.declaration.$1.yatt"
+                , "begin": "\\G!yatt:(\\w+)"
+                , "end": ">"
+            }
+            , "part": {
                 "patterns": [
                     {
                         "name": "meta.multipart.yatt meta.widget.yatt"
                         , "begin": "^<(?=!yatt:(?:widget|page)\\b)"
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
-                            {
-                                "name": "meta.declaration.$1.yatt"
-                                , "begin": "\\G!yatt:(\\w+)"
-                                , "end": ">"
-                            }
+                            { "include": "#declaration" }
                             , {
                                 "begin": "^", "end": "^(?=<!yatt:)"
                                 , "name": "meta.embedded.block.widget.yatt"
@@ -44,11 +45,7 @@
                         , "begin": "^<(?=!yatt:(?:args)\\b)"
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
-                            {
-                                "name": "meta.declaration.$1.yatt"
-                                , "begin": "\\G!yatt:(\\w+)"
-                                , "end": ">"
-                            }
+                            { "include": "#declaration" }
                             , {
                                 "begin": "^", "end": "^(?=<!yatt:)"
                                 , "name": "meta.embedded.block.widget.yatt"
@@ -60,11 +57,7 @@
                         , "begin": "^<(?=!yatt:(?:action|entity)\\b)"
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
-                            {
-                                "name": "meta.declaration.$1.yatt"
-                                , "begin": "\\G!yatt:(\\w+)"
-                                , "end": ">"
-                            }
+                            { "include": "#declaration" }
                             , {
                                 "begin": "^", "end": "^(?=<!yatt:)"
                                 , "name": "meta.embedded.block.action.yatt.perl"
@@ -76,11 +69,7 @@
                         , "begin": "^<(?=!yatt:(\\w+)\\b)"
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
-                            {
-                                "name": "meta.declaration.$1.yatt"
-                                , "begin": "\\G!yatt:(\\w+)"
-                                , "end": ">"
-                            }
+                            { "include": "#declaration" }
                         ]
                     }
                 ]
