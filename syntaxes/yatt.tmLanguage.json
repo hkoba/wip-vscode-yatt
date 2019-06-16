@@ -10,17 +10,21 @@
             , {
                 "name": "meta.multipart.yatt"
                 , "begin": "\\A"
-                , "while": "^(?<!<!yatt:)"
+                , "end": "^(?=<!yatt:)"
                 , "patterns": [
-                    { "include": "#part" }
+                    {
+                        "begin": "\\A", "end": "^(?=<!yatt:)"
+                        , "name": "meta.widget.yatt meta.embedded.block.widget.yatt"
+                    }
                 ]
             }
+            , { "include": "#part" }
 	],
 	"repository": {
             "part": {
                 "patterns": [
                     {
-                        "name": "meta.widget.yatt"
+                        "name": "meta.multipart.yatt meta.widget.yatt"
                         , "begin": "^<(?=!yatt:(?:widget|page)\\b)"
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
@@ -36,7 +40,23 @@
                         ]
                     }
                     , {
-                        "name": "meta.action.yatt.perl"
+                        "name": "meta.multipart.yatt meta.widget.yatt"
+                        , "begin": "^<(?=!yatt:(?:args)\\b)"
+                        , "end": "^(?=<!yatt:)"
+                        , "patterns": [
+                            {
+                                "name": "meta.declaration.$1.yatt"
+                                , "begin": "\\G!yatt:(\\w+)"
+                                , "end": ">"
+                            }
+                            , {
+                                "begin": "^", "end": "^(?=<!yatt:)"
+                                , "name": "meta.embedded.block.widget.yatt"
+                            }
+                        ]
+                    }
+                    , {
+                        "name": "meta.multipart.yatt meta.action.yatt.perl"
                         , "begin": "^<(?=!yatt:(?:action|entity)\\b)"
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
@@ -48,6 +68,18 @@
                             , {
                                 "begin": "^", "end": "^(?=<!yatt:)"
                                 , "name": "meta.embedded.block.action.yatt.perl"
+                            }
+                        ]
+                    }
+                    , {
+                        "name": "meta.multipart.yatt meta.declaration.other.yatt"
+                        , "begin": "^<(?=!yatt:(\\w+)\\b)"
+                        , "end": "^(?=<!yatt:)"
+                        , "patterns": [
+                            {
+                                "name": "meta.declaration.$1.yatt"
+                                , "begin": "\\G!yatt:(\\w+)"
+                                , "end": ">"
                             }
                         ]
                     }
