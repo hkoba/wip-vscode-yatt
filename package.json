@@ -23,6 +23,11 @@
         "grammars": [
             {
                 "language": "yatt",
+                "scopeName": "text.html.yatt",
+                "path": "./syntaxes/yatt.tmLanguage.json"
+            },
+            {
+                "language": "yatt",
                 "scopeName": "text.multipart.yatt",
                 "path": "./syntaxes/yatt-multipart.tmLanguage.json"
 	    }
