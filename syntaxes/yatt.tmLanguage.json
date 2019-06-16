@@ -29,6 +29,10 @@
                                 , "begin": "\\G!yatt:(\\w+)"
                                 , "end": ">"
                             }
+                            , {
+                                "begin": "^", "end": "^(?=<!yatt:)"
+                                , "name": "meta.embedded.block.widget.yatt"
+                            }
                         ]
                     }
                     , {
@@ -40,6 +44,10 @@
                                 "name": "meta.declaration.$1.yatt"
                                 , "begin": "\\G!yatt:(\\w+)"
                                 , "end": ">"
+                            }
+                            , {
+                                "begin": "^", "end": "^(?=<!yatt:)"
+                                , "name": "meta.embedded.block.action.yatt.perl"
                             }
                         ]
                     }
