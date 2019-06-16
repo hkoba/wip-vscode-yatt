@@ -8,20 +8,32 @@
                 , "end": "-->"
             }
             , {
-                "name": "meta.multipart.yatt meta.function.yatt"
-                , "begin": "^(?=<!yatt:)"
+                "name": "meta.multipart.yatt"
+                , "begin": "\\A"
                 , "while": "^(?<!<!yatt:)"
                 , "patterns": [
-                    {
-                        "name": "meta.declaration.$1.yatt"
-                        , "begin": "^<!yatt:(\\w+)"
-                        , "end": ">"
-                    }
+                    { "include": "#part" }
                 ]
             }
 	],
 	"repository": {
-            "entpath": {
+            "part": {
+                "patterns": [
+                    {
+                        "name": "meta.function.yatt"
+                        , "begin": "^(?=<!yatt:)"
+                        , "while": "^(?<!<!yatt:)"
+                        , "patterns": [
+                            {
+                                "name": "meta.declaration.$1.yatt"
+                                , "begin": "^<!yatt:(\\w+)"
+                                , "end": ">"
+                            }
+                        ]
+                    }
+                ]
+            }
+            , "entpath": {
                 "patterns": [
                     { "include": "#entcall" }
                     , { "include": "#entitem" }
