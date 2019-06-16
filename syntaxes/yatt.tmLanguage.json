@@ -69,10 +69,10 @@
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
                             { "include": "#named-declaration" }
-                            , { "include": "#comment"}
                             , {
                                 "begin": "^", "end": "^(?=<!yatt:)"
                                 , "name": "meta.embedded.block.widget.yatt"
+                                , "patterns": [ { "include": "#comment"} ]
                             }
                         ]
                     }
@@ -85,10 +85,10 @@
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
                             { "include": "#general-declaration" }
-                            , { "include": "#comment"}
                             , {
                                 "begin": "^", "end": "^(?=<!yatt:)"
                                 , "name": "meta.embedded.block.widget.yatt"
+                                , "patterns": [ { "include": "#comment"} ]
                             }
                         ]
                     }
@@ -101,10 +101,10 @@
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
                             { "include": "#named-declaration" }
-                            , { "include": "#comment"}
                             , {
                                 "begin": "^", "end": "^(?=<!yatt:)"
                                 , "name": "meta.embedded.block.action.yatt.perl"
+                                , "patterns": [ { "include": "#comment"} ]
                             }
                         ]
                     }
@@ -165,7 +165,7 @@
             "attlist": {
                 "patterns": [
                     {
-                        "begin": "--+", "end": "--+", "name": "comment.block.yatt"
+                        "begin": "--+", "end": "--+", "name": "comment.inline.yatt"
                     }
                     , {
                         "match":"(\\w+)(?::(\\w+))?\\s*=", "captures": {
