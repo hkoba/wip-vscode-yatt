@@ -3,81 +3,22 @@
 	"name": "yatt",
 	"patterns": [
             {
-                "name": "meta.multipart.yatt",
-                "begin": "^(<!yatt:)(\\w+)",
-                "beginCaptures": {
-                    "1": { "name": "keyword.control.other.yatt" }
-                    , "2": { "name": "keyword.other.$2.yatt" }
-                }
-                , "patterns": [
-                    { "include": "#attlist" }
-                ]
-                , "end": ">\n"
-                , "endCaptures": {
-                    "0": { "name": "punctuation.definition.tag.end.yatt" }
-                }
+                "name": "comment.block.yatt"
+                , "begin": "<!--#yatt\\b"
+                , "end": "-->"
             }
             , {
-                "begin": "(<)(yatt)(:)(\\w+)(?=\\s|/?>)",
-                "beginCaptures": {
-		    "1": { "name": "punctuation.definition.tag.begin.yatt" }
-                    , "2": { "name": "entity.name.tag.namespace.yatt" }
-                    , "3": { "name": "punctuation.separator.namespace.yatt" }
-		    , "4": { "name": "entity.name.tag.yatt" }
-                }
-                , "end": "/?>"
-                , "endCaptures": {
-                    "0": { "name": "punctuation.definition.tag.end.yatt" }
-                }
+                "name": "meta.multipart.yatt meta.function.yatt"
+                , "begin": "^(?=<!yatt:)"
+                , "while": "(^|\\G)(?<!<!yatt:)"
                 , "patterns": [
-                    { "include": "#attlist" }
+                    {
+                        "name": "meta.declaration.$1.yatt"
+                        , "begin": "(^|\\G)<!yatt:(\\w+)"
+                        , "end": ">\n"
+                    }
                 ]
             }
-            , {
-                "begin": "(<:)(yatt)(:)(\\w+)(?=\\s|/?>)",
-                "beginCaptures": {
-		    "1": { "name": "punctuation.separator.namespace.yatt" }
-                    , "2": { "name": "entity.name.tag.namespace.yatt" }
-                    , "3": { "name": "punctuation.separator.namespace.yatt" }
-		    , "4": { "name": "entity.other.attribute-name.begin.yatt" }
-                }
-                , "end": "/?>"
-                , "endCaptures": {
-                    "0": { "name": "punctuation.definition.tag.end.yatt" }
-                }
-                , "patterns": [
-                    { "include": "#attlist" }
-                ]
-            }
-            , {
-                "begin": "(</:?)(yatt)(:)(\\w+)\\s*"
-                , "beginCaptures": {
-		    "1": { "name": "punctuation.definition.tag.begin.yatt" }
-                    , "2": { "name": "entity.name.tag.namespace.yatt" }
-                    , "3": { "name": "punctuation.separator.namespace.yatt" }
-		    , "4": { "name": "entity.name.tag.yatt" }
-                }
-                , "end": ">"
-                , "endCaptures": {
-                    "0": { "name": "punctuation.definition.tag.end.yatt" }
-                }
-            }
-            , {
-                "begin": "(&yatt)(?=:)"
-                , "beginCaptures": {
-                    "0": { "name": "entity.other.attribute-name.yatt" }
-                }
-                , "end": ";"
-                , "endCaptures": {
-                    "0": { "name": "entity.other.attribute-name.yatt" }
-                }
-                , "patterns": [
-                    { "include": "#entpath" }
-                ]
-            }
-            , {
-		"include": "text.html.basic"
-	    }            
 	],
 	"repository": {
             "entpath": {
