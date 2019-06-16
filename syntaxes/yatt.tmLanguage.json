@@ -21,25 +21,25 @@
                 "patterns": [
                     {
                         "name": "meta.widget.yatt"
-                        , "begin": "^<!yatt(?=:(?:widget|page)\\b)"
+                        , "begin": "^(?=<!yatt:(?:widget|page)\\b)"
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
                             {
                                 "name": "meta.declaration.$1.yatt"
-                                , "begin": "\\G:(\\w+)"
-                                , "end": ">$"
+                                , "begin": "<!yatt:(\\w+)"
+                                , "end": ">"
                             }
                         ]
                     }
                     , {
                         "name": "meta.action.yatt.perl"
-                        , "begin": "^<!yatt(?=:(?:action|entity)\\b)"
+                        , "begin": "^(?=<!yatt:(?:action|entity)\\b)"
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
                             {
                                 "name": "meta.declaration.$1.yatt"
-                                , "begin": "\\G:(\\w+)"
-                                , "end": ">$"
+                                , "begin": "<!yatt:(\\w+)"
+                                , "end": ">"
                             }
                         ]
                     }
