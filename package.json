@@ -20,11 +20,13 @@
             "extensions": [".yatt",".ytmpl"],
             "configuration": "./language-configuration.json"
         }],
-        "grammars": [{
-            "language": "yatt",
-            "scopeName": "text.html.yatt",
-            "path": "./syntaxes/yatt.tmLanguage.json"
-		}],
+        "grammars": [
+            {
+                "language": "yatt",
+                "scopeName": "text.multipart.yatt",
+                "path": "./syntaxes/yatt-multipart.tmLanguage.json"
+	    }
+        ],
 		"configuration": {
 			"type": "object",
 			"title": "yatt langserver configuration",
