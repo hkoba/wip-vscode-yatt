@@ -22,7 +22,7 @@
                     {
                         "name": "meta.function.yatt"
                         , "begin": "^(?=<!yatt:)"
-                        , "while": "^$|^(?<!<!yatt:)"
+                        , "while": "^(?<!<!yatt:)"
                     }
                 ]
             }
