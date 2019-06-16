@@ -23,17 +23,6 @@
                         "name": "meta.function.yatt"
                         , "begin": "^(?=<!yatt:)"
                         , "while": "^$|^(?<!<!yatt:)"
-                        , "patterns": [
-                            {
-                                "name": "meta.declaration.$1.yatt"
-                                , "begin": "^<!yatt:(\\w+)"
-                                , "end": ">"
-                            }
-                            , {
-                                "name": "meta.embedded.payload.yatt"
-                                , "match": "\\G.*"
-                            }
-                        ]
                     }
                 ]
             }
