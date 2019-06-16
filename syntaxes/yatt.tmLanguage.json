@@ -24,7 +24,17 @@
             "named-declaration": {
                 "name": "meta.declaration.$2.yatt"
                 , "begin": "\\G(!yatt:)(\\w+)((?::\\w+)*)\\s+(\\w+)\\b"
+                , "beginCaptures": {
+                    "1": {"name": "entity.name.tag.namespace.yatt"}
+                    , "2": {"name": "entity.name.tag.namespace.yatt"}
+                    , "4": {
+                        "name": "entity.name.function.yatt"
+                    }
+                }
                 , "end": ">"
+                , "endCaptures": {
+                    "0": { "name": "punctuation.definition.tag.end.yatt" }
+                }
                 , "patterns": [
                     { "include": "#attlist" }
                 ]
@@ -32,7 +42,14 @@
             , "general-declaration": {
                 "name": "meta.declaration.$2.yatt"
                 , "begin": "\\G(!yatt:)(\\w+)((?::\\w+)*)\\b"
+                , "beginCaptures": {
+                    "1": {"name": "entity.name.tag.namespace.yatt"}
+                    , "2": {"name": "entity.name.tag.namespace.yatt"}
+                }
                 , "end": ">"
+                , "endCaptures": {
+                    "0": { "name": "punctuation.definition.tag.end.yatt" }
+                }
                 , "patterns": [
                     { "include": "#attlist" }
                 ]
@@ -42,6 +59,9 @@
                     {
                         "name": "meta.multipart.yatt meta.widget.yatt"
                         , "begin": "^<(?=!yatt:(?:widget|page)\\b)"
+                        , "beginCaptures": {
+                            "0": {"name": "punctuation.definition.tag.begin.yatt"}
+                        }
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
                             { "include": "#named-declaration" }
@@ -54,6 +74,9 @@
                     , {
                         "name": "meta.multipart.yatt meta.widget.yatt"
                         , "begin": "^<(?=!yatt:(?:args)\\b)"
+                        , "beginCaptures": {
+                            "0": {"name": "punctuation.definition.tag.begin.yatt"}
+                        }
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
                             { "include": "#general-declaration" }
@@ -66,6 +89,9 @@
                     , {
                         "name": "meta.multipart.yatt meta.action.yatt.perl"
                         , "begin": "^<(?=!yatt:(?:action|entity)\\b)"
+                        , "beginCaptures": {
+                            "0": {"name": "punctuation.definition.tag.begin.yatt"}
+                        }
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
                             { "include": "#named-declaration" }
@@ -78,6 +104,9 @@
                     , {
                         "name": "meta.multipart.yatt meta.declaration.other.yatt"
                         , "begin": "^<(?=!yatt:(\\w+)\\b)"
+                        , "beginCaptures": {
+                            "0": {"name": "punctuation.definition.tag.begin.yatt"}
+                        }
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
                             { "include": "#geneal-declaration" }
