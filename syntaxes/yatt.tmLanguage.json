@@ -20,13 +20,25 @@
             "part": {
                 "patterns": [
                     {
-                        "name": "meta.function.yatt"
-                        , "begin": "^(?=<!yatt:)"
+                        "name": "meta.widget.yatt"
+                        , "begin": "^(?=<!yatt:(widget|page|args))"
                         , "while": "^(?<!<!yatt:)"
                         , "patterns": [
                             {
                                 "name": "meta.declaration.$1.yatt"
-                                , "begin": "^<!yatt:(\\w+)"
+                                , "begin": "^<!yatt:(widget|page|args)"
+                                , "end": ">$"
+                            }
+                        ]
+                    }
+                    , {
+                        "name": "meta.action.yatt.perl"
+                        , "begin": "^(?=<!yatt:(action|entity))"
+                        , "while": "^(?<!<!yatt:)"
+                        , "patterns": [
+                            {
+                                "name": "meta.declaration.$1.yatt"
+                                , "begin": "^<!yatt:(action|entity)"
                                 , "end": ">$"
                             }
                         ]
