@@ -23,6 +23,13 @@
                         "name": "meta.function.yatt"
                         , "begin": "^(?=<!yatt:)"
                         , "while": "^(?<!<!yatt:)"
+                        , "patterns": [
+                            {
+                                "name": "meta.declaration.$1.yatt"
+                                , "begin": "^<!yatt:(\\w+)"
+                                , "end": ">$"
+                            }
+                        ]
                     }
                 ]
             }
