@@ -21,10 +21,21 @@
             }
 	],
 	"repository": {
-            "declaration": {
-                "name": "meta.declaration.$1.yatt"
-                , "begin": "\\G!yatt:(\\w+)"
+            "named-declaration": {
+                "name": "meta.declaration.$2.yatt"
+                , "begin": "\\G(!yatt:)(\\w+)((?::\\w+)*)\\s+(\\w+)\\b"
                 , "end": ">"
+                , "patterns": [
+                    { "include": "#attlist" }
+                ]
+            }
+            , "general-declaration": {
+                "name": "meta.declaration.$2.yatt"
+                , "begin": "\\G(!yatt:)(\\w+)((?::\\w+)*)\\b"
+                , "end": ">"
+                , "patterns": [
+                    { "include": "#attlist" }
+                ]
             }
             , "part": {
                 "patterns": [
@@ -33,7 +44,7 @@
                         , "begin": "^<(?=!yatt:(?:widget|page)\\b)"
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
-                            { "include": "#declaration" }
+                            { "include": "#named-declaration" }
                             , {
                                 "begin": "^", "end": "^(?=<!yatt:)"
                                 , "name": "meta.embedded.block.widget.yatt"
@@ -45,7 +56,7 @@
                         , "begin": "^<(?=!yatt:(?:args)\\b)"
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
-                            { "include": "#declaration" }
+                            { "include": "#general-declaration" }
                             , {
                                 "begin": "^", "end": "^(?=<!yatt:)"
                                 , "name": "meta.embedded.block.widget.yatt"
@@ -57,7 +68,7 @@
                         , "begin": "^<(?=!yatt:(?:action|entity)\\b)"
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
-                            { "include": "#declaration" }
+                            { "include": "#named-declaration" }
                             , {
                                 "begin": "^", "end": "^(?=<!yatt:)"
                                 , "name": "meta.embedded.block.action.yatt.perl"
@@ -69,7 +80,7 @@
                         , "begin": "^<(?=!yatt:(\\w+)\\b)"
                         , "end": "^(?=<!yatt:)"
                         , "patterns": [
-                            { "include": "#declaration" }
+                            { "include": "#geneal-declaration" }
                         ]
                     }
                 ]
