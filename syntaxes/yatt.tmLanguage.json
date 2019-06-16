@@ -19,6 +19,11 @@
                     }
                 ]
             }
+            , {
+                "name": "meta.multipart.yatt meta.function.yatt"
+                , "begin": "\\A"
+                , "while": "(^|\\G)(?<!<!yatt:)"
+            }
 	],
 	"repository": {
             "entpath": {
