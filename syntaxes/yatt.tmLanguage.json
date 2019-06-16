@@ -10,7 +10,7 @@
             , {
                 "name": "meta.multipart.yatt"
                 , "begin": "\\A"
-                , "while": "^(?<!<!yatt:)|^$"
+                , "while": "^(?<!<!yatt:)"
                 , "patterns": [
                     { "include": "#part" }
                 ]
@@ -22,7 +22,7 @@
                     {
                         "name": "meta.function.yatt"
                         , "begin": "^(?=<!yatt:)"
-                        , "while": "^(?<!<!yatt:)|^$"
+                        , "while": "^$|^(?<!<!yatt:)"
                         , "patterns": [
                             {
                                 "name": "meta.declaration.$1.yatt"
