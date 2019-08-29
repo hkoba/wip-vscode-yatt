@@ -20,6 +20,13 @@
             "extensions": [".yatt",".ytmpl"],
             "configuration": "./language-configuration.json"
         }],
+            "themes": [
+                {
+                    "label": "yatt default",
+                    "uiTheme": "vs",
+                    "path": "themes/yatt_default.json"
+                }
+            ],
         "grammars": [
             {
                 "language": "yatt",
