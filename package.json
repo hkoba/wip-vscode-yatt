@@ -3,6 +3,7 @@
 	"displayName": "yatt-langserver",
 	"description": "Language Server for yatt",
 	"publisher": "hkoba",
+	"repository": "https://github.com/hkoba/wip-vscode-yatt",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.33.0"
