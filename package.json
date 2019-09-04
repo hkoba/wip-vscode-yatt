@@ -16,31 +16,39 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"languages": [{
-            "id": "yatt",
-            "aliases": ["yatt", "yatt"],
-            "extensions": [".yatt",".ytmpl"],
-            "configuration": "./language-configuration.json"
-        }],
-            "themes": [
-                {
-                    "label": "yatt default",
-                    "uiTheme": "vs",
-                    "path": "themes/yatt_default.json"
-                }
-            ],
-        "grammars": [
-            {
-                "language": "yatt",
-                "scopeName": "text.html.yatt",
-                "path": "./syntaxes/yatt.tmLanguage.json"
-            },
-            {
-                "language": "yatt",
-                "scopeName": "text.multipart.yatt",
-                "path": "./syntaxes/yatt-multipart.tmLanguage.json"
-	    }
-        ],
+		"languages": [
+			{
+				"id": "yatt",
+				"aliases": [
+					"yatt",
+					"yatt"
+				],
+				"extensions": [
+					".yatt",
+					".ytmpl"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"themes": [
+			{
+				"label": "yatt default",
+				"uiTheme": "vs",
+				"path": "themes/yatt_default.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "yatt",
+				"scopeName": "text.html.yatt",
+				"path": "./syntaxes/yatt.tmLanguage.json"
+			},
+			{
+				"language": "yatt",
+				"scopeName": "text.multipart.yatt",
+				"path": "./syntaxes/yatt-multipart.tmLanguage.json"
+			}
+		],
 		"configuration": {
 			"type": "object",
 			"title": "yatt langserver configuration",
@@ -57,9 +65,8 @@
 					"description": "Traces the communication between VS Code and the language server."
 				}
 			}
-		}		
+		}
 	},
-
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
