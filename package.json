@@ -5,6 +5,7 @@
 	"publisher": "hkoba",
 	"repository": "https://github.com/hkoba/wip-vscode-yatt",
 	"version": "0.0.1",
+	"license": "Artistic-2.0",
 	"engines": {
 		"vscode": "^1.33.0"
 	},
