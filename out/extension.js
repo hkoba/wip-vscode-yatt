@@ -24,6 +24,7 @@ function activate(context) {
     console.log('Congratulations, your extension "yatt-langserver" is now active!');
     let rootPath = defaultValue(vscode.workspace.rootPath, context.asAbsolutePath(path.join()));
     const { command, args } = find_langserver(rootPath);
+    console.log("language server:", command, args);
     let serverOptions = {
         run: { command, args },
         debug: { command, args }
@@ -40,7 +41,7 @@ function find_langserver(rootPath) {
     if (fs.existsSync(command)) {
         return { command, args: ["server"] };
     }
-    command = path.join(rootPath, "local", "lib", "perl5", "lib", "YATT", "Lite", "LanguageServer.pm");
+    command = path.join(rootPath, "local", "lib", "perl5", "YATT", "Lite", "LanguageServer.pm");
     if (fs.existsSync(command)) {
         return { command, args: ["server"] };
     }
