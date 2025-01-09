@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deactivate = exports.activate = void 0;
+exports.deactivate = exports.find_langserver = exports.activate = void 0;
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require("vscode");
 const path = require("path");
+const fs = require("fs");
 const vscode_languageclient_1 = require("vscode-languageclient");
 let client;
 function defaultValue(value, defaultValue) {
@@ -22,10 +23,10 @@ function activate(context) {
     // This line of code will only be executed once when your extension is activated
     console.log('Congratulations, your extension "yatt-langserver" is now active!');
     let rootPath = defaultValue(vscode.workspace.rootPath, context.asAbsolutePath(path.join()));
-    let serverCmd = path.join(rootPath, "lib", "YATT", "Lite", "LanguageServer.pm");
+    const { command, args } = find_langserver(rootPath);
     let serverOptions = {
-        run: { command: serverCmd, args: ["server"] },
-        debug: { command: serverCmd, args: ["server"] }
+        run: { command, args },
+        debug: { command, args }
     };
     let clientOptions = {
         documentSelector: [{ scheme: 'file', language: 'yatt' }]
@@ -34,6 +35,18 @@ function activate(context) {
     client.start();
 }
 exports.activate = activate;
+function find_langserver(rootPath) {
+    let command = path.join(rootPath, "lib", "YATT", "Lite", "LanguageServer.pm");
+    if (fs.existsSync(command)) {
+        return { command, args: ["server"] };
+    }
+    command = path.join(rootPath, "local", "lib", "perl5", "lib", "YATT", "Lite", "LanguageServer.pm");
+    if (fs.existsSync(command)) {
+        return { command, args: ["server"] };
+    }
+    return { command: "yatt", args: ["langserver"] };
+}
+exports.find_langserver = find_langserver;
 // this method is called when your extension is deactivated
 function deactivate() {
     if (!client) {

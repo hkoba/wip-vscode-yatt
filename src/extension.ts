@@ -4,6 +4,8 @@ import * as vscode from 'vscode';
 
 import * as path from 'path';
 
+import * as fs from 'fs';
+
 import {
 	LanguageClient,
 	LanguageClientOptions,
@@ -32,10 +34,11 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.workspace.rootPath, 
 		context.asAbsolutePath(path.join())
 	);
-	let serverCmd = path.join(rootPath, "lib", "YATT", "Lite", "LanguageServer.pm");
+
+        const {command, args} = find_langserver(rootPath);
 	let serverOptions: ServerOptions = {
-		run: { command: serverCmd, args: ["server"]},
-		debug: { command: serverCmd, args: ["server"]}
+		run: { command, args},
+		debug: { command, args}
 	};
 
 	let clientOptions: LanguageClientOptions = {
@@ -50,6 +53,19 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	client.start();
+}
+
+export function find_langserver(rootPath: string): {command: string, args: string[]} {
+  let command = path.join(rootPath, "lib", "YATT", "Lite", "LanguageServer.pm")
+  if (fs.existsSync(command)) {
+    return {command, args: ["server"]}
+  }
+  command = path.join(rootPath, "local", "lib", "perl5", "lib", "YATT", "Lite", "LanguageServer.pm")
+  if (fs.existsSync(command)) {
+    return {command, args: ["server"]}
+  }
+
+  return {command: "yatt", args: ["langserver"]};
 }
 
 // this method is called when your extension is deactivated
