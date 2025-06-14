@@ -1,0 +1,33 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2022,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+        "@typescript-eslint/no-unused-expressions": "error",
+        "curly": "error",
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": "class",
+                "format": ["PascalCase"]
+            }
+        ],
+        "semi": ["error", "always"],
+        "eqeqeq": ["error", "always"]
+    },
+    "env": {
+        "node": true,
+        "es2022": true
+    }
+}
