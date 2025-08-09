@@ -25,7 +25,7 @@
             "comment": {
                 "name": "comment.block.yatt"
                 , "begin": "<!--#yatt\\b"
-                , "end": "-->"
+                , "end": "#-->"
             }
             , "named-declaration": {
                 "name": "meta.declaration.$2.yatt"
