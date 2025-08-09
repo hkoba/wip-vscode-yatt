@@ -6,7 +6,7 @@
         "repository": {
           "url": "git+https://github.com/hkoba/wip-vscode-yatt.git"
         },
-	"version": "0.2.5",
+	"version": "0.2.6",
 	"license": "Artistic-2.0",
 	"engines": {
 		"vscode": "^1.96.0"
