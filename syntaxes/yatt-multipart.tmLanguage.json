@@ -83,7 +83,7 @@
                     }
                     , {
                         "name": "meta.multipart.yatt meta.widget.yatt"
-                        , "begin": "^<(?=!yatt:(?:args)\\b)"
+                        , "begin": "^<(?=!yatt:(?:args|base)\\b)"
                         , "beginCaptures": {
                             "0": {"name": "punctuation.definition.tag.begin.yatt"}
                         }
@@ -102,7 +102,7 @@
                     }
                     , {
                         "name": "meta.multipart.yatt meta.action.yatt.perl"
-                        , "begin": "^<(?=!yatt:(?:action|entity)\\b)"
+                        , "begin": "^<(?=!yatt:(?:action|entity|argmacro)\\b)"
                         , "beginCaptures": {
                             "0": {"name": "punctuation.definition.tag.begin.yatt"}
                         }
